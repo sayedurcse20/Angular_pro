@@ -18,17 +18,18 @@ export class AppComponent implements OnInit{
   selectedHeroename: any;
   slectedHeroId:any;
   
-
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
+    this.http.get('http://localhost:8080/data').subscribe(data => {
+    console.log(data);
+  });
   }
   // hero: Hero;
   // OnSelect(hero: Hero): void{
   //   this.selectedHero = hero;
   //   console.log(hero);
   // }
-
   onSelect(hero){
     this.selectedHeroename = hero.name;
     this.slectedHeroId = hero.id;
@@ -38,9 +39,7 @@ export class AppComponent implements OnInit{
     // This is a function named "add" and with passing parameter with "heroname"
     // this function  is called from (click) event from the .html file.
     console.log(heroName);
-
     // this name should be store on database
-    // 
     const req = this.http.post('http://jsonplaceholder.typicode.com/posts', {
       name: heroName
     })
@@ -51,14 +50,12 @@ export class AppComponent implements OnInit{
         err => {
           console.log("Error occured");
         }
-      );
-
-  }
+      );  
   }
 
-   
  
-  
+}
+
 
 
 export const HEROES: Hero[] = [
