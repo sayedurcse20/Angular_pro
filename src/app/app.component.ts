@@ -18,11 +18,13 @@ export class AppComponent implements OnInit{
   selectedHero: Hero;
   selectedHeroename: any;
   slectedHeroId:any;
-
+  apiData: any;   
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
     this.http.get('http://localhost:8080/data').subscribe(data => {
+      this.apiData = data;
+      
     console.log(data);
   });
   }
